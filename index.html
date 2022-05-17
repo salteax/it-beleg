@@ -5,9 +5,14 @@
         
         <!-- Links -->
         <link rel="stylesheet" href="./css/style.css" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+  
 
         <!-- Scripts -->
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
         <script src="./js/script.js"></script>
+
 
         <!-- Metatags -->
         <meta charset="UTF-8">
@@ -25,21 +30,23 @@
             </nav>
             <div class="content">
                 <p>Content</p>
-                <div class="progress">
-
-                </div>
-                <form class="topic">
+                <form class="topic" name="topic">
                     <label><input type="radio" name="thema" id="mathe" value="Mathematik">Mathematik</label>
                     <label><input type="radio" name="thema" id="it" value="Internettechnologien">Internettechnologien</label>
                     <label><input type="radio" name="thema" id="allgemein" value="Allgemein">Allgemein</label>
                 </form>
+                <div class="progress">
+                    <div id="bar">
+                        <div id="right"></div><div id="wrong"></div>
+                    </div>
+                </div>
                 <div class="task">
-                    <div class="question">Frage?</div>
-                    <div class="answer">
-                        <button>A</button>
-                        <button>B</button>
-                        <button>C</button>
-                        <button>D</button>
+                    <div id="question">Wähle ein Themengebiet!</div>
+                    <div id="answer">
+                        <button><span class="test">A</span></button>
+                        <button><span class="test">B</span></button>
+                        <button><span class="test">C</span></button>
+                        <button><span class="test">D</span></button>
                     </div>
                 </div>
             </div>

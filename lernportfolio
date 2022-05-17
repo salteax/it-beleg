@@ -3,3 +3,8 @@
 -> Github Repository angelegt, Ordnerstruktur angelegt
 -> HTML Struktur angelegt (Elemente), Grundlegender Style für Elemente mittels CSS
 -> erste Ideen bei Javascript Fragen laden => Ajax Fehler CORS -> Live Server Extension runtergeladen -> Fehler behoben
+
+17.05.2022:
+-> Fragen in Dokument
+-> Random Fragen -> Random Antworten Reihenfolge
+-> Probleme mit Katex, ersetzt innere Elemente des Buttons -> workaround button hat id mit richtig oder falsch und nicht text im button

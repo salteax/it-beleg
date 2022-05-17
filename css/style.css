@@ -53,17 +53,44 @@ nav {
     justify-content: center;
 }
 
+
+.progress {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#bar {
+    width: 80%;
+    height: 25px;
+    background-color: grey;
+}
+
+#right {
+    width: 50%;
+    height: 100%;
+    float: left;
+    background-color: green;
+}
+
+#wrong {
+    width: 50%;
+    height: 100%;
+    float: right;
+    background-color: red;
+}
+
 .task {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.question {
+#question {
     
 }
 
-.answer {
+#answer {
 
 }
 
