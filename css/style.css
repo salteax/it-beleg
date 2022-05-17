@@ -1,0 +1,109 @@
+/* Allgemein */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* Header */
+header {
+    background-color: green;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Main */
+main {
+    background-color: blue;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Navbar */
+nav {
+    background-color: aquamarine;
+    width:25%;
+}
+
+/* Content */
+.content {
+    background-color: coral;
+    width:100%;
+}
+
+.progress {
+    
+}
+
+.topic {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question {
+    
+}
+
+.answer {
+
+}
+
+/* Sidebar */
+aside {
+    background-color: blueviolet;
+    width:25%;
+}
+
+/* Footer */
+footer {
+    background-color: red;
+    height: 10%;
+}
+
+/* Mobilephone specific settings */
+@media (max-width: 480px) {
+    main {
+        background-color: black;
+        flex-flow: column;
+    }
+
+    nav {
+        width:100%;
+        height: 10%;
+    }
+    
+    .content {
+        width:100%;
+        height: 80%;
+    }
+
+    .topic {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    aside {
+        width:100%;
+        height: 10%;
+    }
+}
