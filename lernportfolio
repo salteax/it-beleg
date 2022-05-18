@@ -8,3 +8,6 @@
 -> Fragen in Dokument
 -> Random Fragen -> Random Antworten Reihenfolge
 -> Probleme mit Katex, ersetzt innere Elemente des Buttons -> workaround button hat id mit richtig oder falsch und nicht text im button
+
+18.05.2022
+-> CSS angepasst, calc() Funktion kennengelernt
