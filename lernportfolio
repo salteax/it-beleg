@@ -11,3 +11,7 @@
 
 18.05.2022
 -> CSS angepasst, calc() Funktion kennengelernt
+
+19.05.2022
+-> Fehler, bei Mathe Fragen wird eine Frage immer doppelt gestellt -> keine Möglichkeit gefunden das zu beheben da Ursache unklar
+-> Problem, Fragen dynamisch laden durch klicken der Radio buttons, Array aber beim ersten auswählen immer leer, deswegen Fragen direkt in Arrays

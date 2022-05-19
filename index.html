@@ -24,39 +24,56 @@
     </head>
     <body>
         <header>
-            <span id="white-text">IT I</span><span>-</span><span>Beleg</span>
+            IT I - Beleg
         </header>
         <main>
-            <nav>
-                <p>Nav</p>
-            </nav>
-            <div class="content">
-                <form class="topic" name="topic">
-                    <label><input type="radio" name="thema" id="mathe" value="Mathematik"> Mathematik</label>
-                    <label><input type="radio" name="thema" id="it" value="Internettechnologien"> Internettechnologien</label>
-                    <label><input type="radio" name="thema" id="allgemein" value="Allgemein"> Allgemein</label>
-                </form>
-                <div class="progress">
+            <aside id="sidebar">
+                <div id="topic">
+                    <button class="thema" value="Mathematik">Mathematik</button>
+                    <button class="thema" value="Internettechnologien">Internettechnologien</button>
+                    <button class="thema" value="Allgemein">Allgemein</button>
+                </div>
+                <div id="arrow-button">
+                    <button id="arrow">></button>
+                </div>
+            </aside>
+            <div id="content">
+                <div id="progress">
                     <div id="bar">
                         <div id="right"></div><div id="wrong"></div>
                     </div>
                 </div>
-                <div class="task">
-                    <div id="question">Wähle ein Themengebiet!</div>
+                <div id="task">
+                    <div id="question">Wähle ein Themengebiet aus der Seitenleiste aus!</div>
                     <div id="answer">
-                        <button><span class="test">A</span></button>
-                        <button><span class="test">B</span></button>
-                        <button><span class="test">C</span></button>
-                        <button><span class="test">D</span></button>
+                        <button><span>A</span></button>
+                        <button><span>B</span></button>
+                        <button><span>C</span></button>
+                        <button><span>D</span></button>
                     </div>
                 </div>
+                <div id="stats">
+                    <table>
+                        <tr><th colspan="2">Statistiken</th></tr>
+                        <tr><td>Richtig</td><td id="right-questions"></td></tr>
+                        <tr><td>Falsch</td><td id="wrong-questions"></td></tr>
+                        <tr><td>Gesamt</td><td id="total-questions"></td></tr>
+                    </table>
+                    <p id="question">Wähle ein neues Themengebiet aus der Seitenleiste aus um weiter zu üben!</p>
+                </div>
             </div>
-            <aside>
-                <p>Sidebar</p>
-            </aside>
         </main>
         <footer>
             <p>© s81801 - Paul Koreng</p>
         </footer>
+
+        <script>
+            // Übernommen aus Beispiel
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./js/sw.js')
+                .then(reg => console.log(reg))
+                .catch(err => console.log(err));
+            }
+        </script>
     </body>
 </html>

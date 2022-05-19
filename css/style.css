@@ -10,20 +10,24 @@ html, body {
     overflow: hidden;
 }
 
+p {
+    font-size: 16px;
+    width: 80%;
+    text-align: center;
+    overflow-wrap: break-word;
+    margin: 5px 0px 5px 0px;
+}
+
 /* Header */
 header {
-    background-color: #000000;
-    color: #A0AECD;
+    background-color: #282828;
+    color: #ebdbb2;
     font-weight: 900;
     font-size: 40pt;
     height: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#white-text {
-    color: #FFFFFF;
 }
 
 /* Main */
@@ -33,71 +37,109 @@ main {
     flex-direction: row;
 }
 
-/* Navbar */
-nav {
-    background-color: #646D81;
-    width:25%;
+/* Sidebar */
+#sidebar {
+    display: flex;
+    flex-direction: row;
+    width: 25px;
+    z-index: 1;
+}
+
+#arrow-button {
+    width: 25px;
+    height: 100%;
+}
+
+#arrow-button button {
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color:#a0cda8;
+    color: #ffffff;
+    border: none;
+    font-size: 32pt;
+}
+
+#arrow-button button:hover {
+    background-color:#69b075;
+}
+
+#topic {
+    display: none;
+    flex-direction: column;
+    background: #ebdbb2;
+    width: 0%;
+}
+
+#topic button {
+    width: 100%;
+    height: 10%;
+    border: none;
+    color: #ffffff;
+}
+
+#topic button:nth-child(even) {
+    background-color: #83a598;
+}
+
+#topic button:nth-child(odd) {
+    background-color: #b8bb26;
+}
+
+#topic button:hover {
+    transition: 0.2s;
+    transition-timing-function: linear;
+}
+
+#topic button:nth-child(even):hover {
+    background-color: #458588;
+}
+
+#topic button:nth-child(odd):hover {
+    background-color: #98971a;
+}
+
+#topic button span {
+    font-size: 16px;
 }
 
 /* Content */
-.content {
+#content {
     width:100%;
+    position: absolute;
 }
 
-.progress {
-    
-}
-
-.topic {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.topic label {
-    padding: 5px;
-}
-
-.topic input {
-
-}
-
-.progress {
+#progress {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    padding: 10px 0px 10px 0px;
 }
 
 #bar {
     width: 80%;
     height: 25px;
-    background-color: grey;
+    background-color: #a89984;
 }
 
 #right {
     width: 50%;
     height: 100%;
     float: left;
-    background-color: #7B955B;
+    background-color: #b8bb26;
 }
 
 #wrong {
     width: 50%;
     height: 100%;
     float: right;
-    background-color: #B53543;
+    background-color: #fb4934;
 }
 
-.task {
+#task {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-#question {
-    padding: 5px;
-    font-size: 16px;
-    text-align: center;
 }
 
 #answer {
@@ -108,8 +150,8 @@ nav {
 
 #answer button {
   border: none;
-  color: #FFFFFF;
-  background-color:#A0AECD;
+  color: #fbf2c7;
+  background-color:#928374;
   margin: 4px;
   padding: 16px 32px;
   text-align: center;
@@ -119,21 +161,40 @@ nav {
 }
 
 #answer button:hover {
-    background-color:#505767;
-    transition: 0.5s;
+    background-color: #282828;
+    transition: 0.2s;
     transition-timing-function: linear;
 }
 
-/* Sidebar */
-aside {
-    background-color: #3C424E;
-    width:25%;
+#stats {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#stats table {
+    border: 1px black;
+    border-collapse: collapse;
+    width: 80%;
+}
+
+#stats th, td {
+    padding: 10px 30px 10px 30px;
+    text-align: center;
+}
+
+#stats tr:nth-child(odd) {
+    background-color: #fbf1c7;
+}  
+
+#stats tr:nth-child(even) {
+    background-color: #ebdbb2;
 }
 
 /* Footer */
 footer {
-    background-color: #A0AECD;
-    color: #000000;
+    background-color: #bdae93;
+    color: #282828;
     height: 20px;
     display: flex;
     justify-content: center;
@@ -142,7 +203,7 @@ footer {
 }
 
 footer p {
-
+    margin: 0;
 }
 
 /* Mobilephone specific settings */
@@ -151,28 +212,16 @@ footer p {
         flex-flow: column;
     }
 
-    nav {
-        width:100%;
-        height: 10%;
+    aside {
+        height: 100%;
     }
-    
-    .content {
+
+    #content {
         width:100%;
         height: 80%;
     }
 
-    .topic {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
     #answer {
         flex-direction: column;
-    }
-    
-    aside {
-        width:100%;
-        height: 10%;
     }
 }

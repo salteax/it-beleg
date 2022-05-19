@@ -6,13 +6,15 @@ let mathQuestions = [];
 let itQuestions = [];
 let generalQuestions = [];
 let isMath = false;
+let expanded = false;
 let stats;
 let activeQuestions;
+let questionPath = '../data/questions.json'
 
 let i = 0;
 
 window.addEventListener("load", function() {
-    fetchJSONFile('../data/questions.json', function(data){
+    fetchJSONFile(questionPath, function(data){
         for(i = 0; i < data.mathematik.length; i++) {
             mathQuestions.push(data.mathematik.at(i));
         }
@@ -24,11 +26,13 @@ window.addEventListener("load", function() {
         }
     });
 
-    const radios = document.getElementsByName("thema");
-    for(const radio of radios) {
-        radio.onclick = function(e) {
+    const topicButtons = document.getElementsByClassName("thema");
+    for(const topic of topicButtons) {
+        topic.onclick = function(e) {
             isMath = false;
-            stats = {total:0,answered:0,right:0, wrong:0}
+            stats = {total:0,answered:0,right:0, wrong:0};
+            document.getElementById("task").style.display = 'flex';
+            document.getElementById("stats").style.display ='none';
             document.getElementById("right").style.width = "50%";
             document.getElementById("wrong").style.width = "50%";
 
@@ -43,10 +47,11 @@ window.addEventListener("load", function() {
                 case "Allgemein":
                     activeQuestions = [...generalQuestions];
                 break;
-                default: 
+                default:
             }
             stats.total = activeQuestions.length;
             newQuestion();
+            expand(); // damit der User weniger verwirrt ist
         }
     }
 
@@ -71,6 +76,8 @@ window.addEventListener("load", function() {
             newQuestion();
         }
     }
+
+    document.getElementById("arrow-button").addEventListener("click", expand);
 });
 
 function fetchJSONFile(path, callback) {
@@ -122,10 +129,28 @@ function newQuestion() {
         // Frage aus Array entfernen
         activeQuestions.splice(activeQuestions[questionNumber], 1);
     } else {
-        // !TODO DURCH MODAL DIALOG ERSETZEN
-        alert("Statistiken\n" +
-              "Richtig: " + stats.right + "\n" +
-              "Falsch: " + stats.wrong
-        );
+        // Statistiken
+        document.getElementById("task").style.display = 'none';
+        document.getElementById("stats").style.display ='flex';
+
+        document.getElementById("right-questions").innerHTML = stats.right;
+        document.getElementById("wrong-questions").innerHTML = stats.wrong;
+        document.getElementById("total-questions").innerHTML = stats.total;
+    }
+}
+
+function expand() {
+    if(!expanded) {
+        document.getElementById("sidebar").style.width = "100%";
+        document.getElementById("topic").style.display = "flex";
+        document.getElementById("topic").style.width = "100%";
+        document.getElementById("arrow").innerHTML = "<";
+        expanded = true;
+    } else {
+        document.getElementById("sidebar").style.width = "25px";
+        document.getElementById("topic").style.display = "none";
+        document.getElementById("topic").style.width = "0%";
+        document.getElementById("arrow").innerHTML = ">";
+        expanded = false;
     }
 }
