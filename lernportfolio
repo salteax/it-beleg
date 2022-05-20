@@ -15,3 +15,8 @@
 19.05.2022
 -> Fehler, bei Mathe Fragen wird eine Frage immer doppelt gestellt -> keine Möglichkeit gefunden das zu beheben da Ursache unklar
 -> Problem, Fragen dynamisch laden durch klicken der Radio buttons, Array aber beim ersten auswählen immer leer, deswegen Fragen direkt in Arrays
+
+20.05.2022
+-> REST Schnittstelle
+-> Fragen laden geht
+-> Probleme beim laden der Antworten

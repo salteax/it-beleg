@@ -60,10 +60,6 @@ main {
     font-size: 32pt;
 }
 
-#arrow-button button:hover {
-    background-color:#69b075;
-}
-
 #topic {
     display: none;
     flex-direction: column;
@@ -118,19 +114,19 @@ main {
 
 #bar {
     width: 80%;
-    height: 25px;
+    height: 40px;
     background-color: #a89984;
 }
 
 #right {
-    width: 50%;
+    width: 0%;
     height: 100%;
     float: left;
     background-color: #b8bb26;
 }
 
 #wrong {
-    width: 50%;
+    width: 0%;
     height: 100%;
     float: right;
     background-color: #fb4934;
@@ -142,8 +138,16 @@ main {
     align-items: center;
 }
 
+#question {
+    font-size: 16px;
+    width: 80%;
+    text-align: center;
+    overflow-wrap: break-word;
+    margin: 5px 0px 5px 0px;
+}
+
 #answer {
-    display:flex;
+    display:none;
     flex-direction: row;
     justify-content: center;
 }
