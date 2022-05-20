@@ -112,10 +112,11 @@ function fetchJSONFile(isRest, path, callback) {
     };
     
     httpRequest.open('GET', path, true);
+    // nur notwendig wenn Rest-Schnittstelle angegangen werden soll
     if(isRest) {
         let mail = "s81801@informatik.htw-dresden.de";
         let pw = "81801";
-        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(mail + ":" + pw));
+        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(mail + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
     }
     httpRequest.send();
 }
