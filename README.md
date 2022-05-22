@@ -1,6 +1,6 @@
 # Internettechnologien I - Beleg
 
-Eine Progressive Webapplikation (PWA) zur Überprüfung verschiedener Kenntnissstände, u.A. Mathematik, Internettechnologien und Allgemeines.
+Eine Progressive Webapplikation (PWA) zur Überprüfung verschiedener Kenntnisstände, u.A. Mathematik, Internettechnologien und Allgemeines.
 
 ## Allgmeine Informationen
 Author: Paul Koreng\

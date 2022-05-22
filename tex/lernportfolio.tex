@@ -1,0 +1,55 @@
+\documentclass[a4paper,12pt,titlepage]{scrartcl}
+\usepackage{helvet}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\renewcommand{\familydefault}{\sfdefault}
+\title{Internettechnologien I}
+\subtitle{Beleg - Lernportfolio}
+\author{s81801, Paul Koreng}
+\date{\today}
+\begin{document}
+    {
+        \centering
+        \maketitle
+    }
+    \newpage
+    \tableofcontents
+    \newpage
+    \section{Einleitung}
+        Im Rahmen des Internettechnologien I Belegs soll ein Lernportfolio erstellt werden, in welchem Lernfortschritte, Misserfolge und Vorschläge zur Erweiterung \& Verbesserung des Beleges dokumentiert werden sollen.\\
+        Bei dem anzufertigendem Beleg handelt es sich um eine Progressive Web App, welche ein webbasiertes Programm zur Überprüfung verschiedener Kenntnisstände, u.A. Mathematik, Internettechnologien und Allgemeines. Bei den verwendeten Technologien handelt es sich um HTML, CSS und Javascript. Die Applikation soll sowohl als Desktopanwendung wie auch als Mobilanwendung komfortabel genutzt werden können.
+    \newpage
+    \section{Lerndokumentation}
+        In den folgenden Abschnitten sind die Lernfortschritte wie auch Misserfolge notiert der Daten an denen aktiv am Projekt gearbeitet wurde.
+        \subsection{Entwicklungstag 1, 15. Mai 2022}
+            Der 1. Tag der Bearbeitung des Belegs begann mit dem Schauen des Belegvideos und mit dem Durchlesen des Beleg GitHub Repositorys. Nach Verstehen der Aufgabenstellung habe ich ein eigenes GitHub Repository angelegt und mir eine grobe Strukturierung der Ordnerstruktur überlegt. Um einen Überblick zu behalten, habe ich jeweils für CSS und Javascript separate Ordner angelegt und eine index.html im Rootordner erstellt.
+        \subsection{Entwicklungstag 2, 16. Mai 2022}
+            Am 2. Tag der Bearbeitung des Belegs habe ich den Aufbau des Beispiels als HTML Gerüst umgesetzt und um ein responsives Design zu erhalten, mittels CSS eine Flex Darstellung erstellt und um Mobilgeräte zu unterstützen eine Mediaquery eingerichtet damit auch da der Seiteninhalt entsprechend angezeigt wird.\\
+            Anschließend habe ich noch versucht, mittels Javascript AJAX die Fragen aus einer JSON Datei zu laden, dies hat aber leider nicht geklappt aufgrund von AJAX CORS Fehlern - nach einigem Suchen habe ich herausgefunden, dass man einen Liveserver benötigt, damit AJAX funktioniert. Um dieses Problem dann zu lösen, habe ich mir eine Live Server Extension für meinen Editor, VS Codium, heruntergeladen und der Fehler war behoben.
+        \subsection{Entwicklungstag 3, 17. Mai 2022}
+            Der 3. Tag der Entwicklung begann damit, die Fragen aus der JSON Datei mittels DOM in das HTML Gerüst zu laden und anzuzeigen. Der nächste Schritt war es, die Antworten der Fragen in einer zufälligen Reihenfolge anzuzeigen. Dies wurde damit erreicht, dass ein Array mit den Zahlen eins bis vier zufällig sortiert wurde und dann die Antworten jeweils ein Element dieses Arrays zugeordnet bekommen und dementsprechend aufgelistet werden.
+            Für die Auswertung der Fragen habe ich den Buttons, in welchen die Antworten stehen, jeweils den Buttons Spans mit der falschen Antwort die ID 'wrong' und dem Button Span mit der richtigen Antwort die ID 'right' gegeben.\\
+            Bei der Einbindung von KaTeX, um eine schöne Darstellung der Mathematik-Formeln zu erhalten, kam es dann damit jedoch zu Problemen. KaTeX scheint nämlich alle Attribute in einem Element zu überschreiben. In meinem Fall war dies die ID des Spans innerhalb des Buttons und somit hatte ich das Problem, dass ich keine richtige Auswertung der Fragen mehr erhalten habe. Das Problem habe ich aber dann nach längerem Trial \& Error damit gelöst, dass ich das Span entfernt habe und jeweils den Antwort Buttons die entsprechende ID gegeben habe.
+        \subsection{Entwicklungstag 4, 18. Mai 2022}
+            Am 4. Tag der Entwicklung habe ich eine grundlegende Überarbeitung des CSS vorgenommen und aus einem Prototypen eine anschauliche Darstellung erstellt. Des Weiteren habe ich noch die CSS-Funktion calc() kennengelernt und mit ihr die Größenaufteilung der Elemente meiner Seite angepasst.
+        \subsection{Entwicklungstag 5, 19. Mai 2022}
+            Am 5. Tag kam es größtenteils zur Festellung von einigen Fehlern, zu welchen ich zu diesem Zeitpunkt noch keine Lösung gefunden habe.\\
+            Der 1. Fehler kam beim Laden der Mathematik Fragen. Es kommt nämlich zum Problem, dass eine Frage immer doppelt geladen wird anstelle von einem einzigen Mal.\\
+            Der 2. Fehler war die Implementierung des dynamischen laden der Fragen mittels AJAX - beim Laden des 1. Fragesatzes kam es nämlich immer dazu, dass dieser leer war und der 2. Fragensatz dann sowohl seine Fragen enthielt und auch die des 1. Fragesatzes. Die teilweise Lösung dieses Problems war, dass die Fragen aller Fragesätze nicht dynamisch geladen werden, sondern direkt beim laden der Seite in Arrays gespeichert werden und dann dynamisch in einen Fragearray geladen wurden.
+            An diesem Tag wurde aber auch noch eine Auswertung der Fragesätze entwickelt und dies dann auch mittels HTML und CSS veranschaulicht.
+        \subsection{Entwicklungstag 6, 20. Mai 2022}
+            Der 6. Entwicklungstag war dem Implementieren der REST Schnittstelle gewidmet. Vorerst habe ich mich mit dem Webquiz bekannt gemacht und die verschiedenen CURL Befehle ausprobiert. Um dies nicht zu umständlich zu machen, habe ich ein kleines Bash Script entwickelt, mit welchem man einen neuen User anlegen kann, ein vorgefertigtes Quiz erstellen kann und noch einige andere Befehle ausführen kann zu Erleichterung der Arbeit.\\
+            Das Implementieren der REST Schnittstelle zur Abfrage der Fragen war nicht sehr aufwendig, da nur die AJAX GET Request etwas angepasst werden musste. Die Implementation REST Schnittstelle zur Abfrage der richtigen Antwort war jedoch nicht so erfolgreich, da die Abfrage der gesamten Antworten stets einen leeren Array zurückgeliefert hat und die Abfrage einer einzelnen Antwort zu Fehlern geführt hat.\\
+            Des Weiteren habe ich am 6. Entwicklungstag noch den Serviceworker aus dem GitHub Beleg Beispiel übernommen und in mein Projekt mit eingebaut, um auch eine Offlinenutzung zu ermöglichen.
+    \newpage
+    \section{Vorschläge}
+        Der Beleg ist an sich umfangreich und deckt alles aus den Vorlesung Gelernte ab und dient somit gut dem Festigen der Kenntnisse. Es ist auch sehr gut, dass einem eine sehr offene Bearbeitung geboten wird und man nicht alles nach Schema F machen muss. Einige Vorschläge sind mir aber trotzdem in den Sinn gekommen.
+        \subsection{Verbesserungen}
+            Die Nutzung des Webquiz fand ich unteranderem etwas schwierig. Es wurde zwar in einer Vorlesungseinheit einiges dazu besprochen, aber es wäre von Vorteil, den Abschnitt im GitHub Repository noch mal etwas umfangreicher zu gestalten, da nicht alles, was in der Vorlesungseinheit gesagt wurde im Kopf bleiben kann.\\
+            Des Weiteren könnte man noch einen größeren Test-Datensatz anbieten für Fragen, da einem selbst manchmal die Kreativität fehlt, sich etwas auszudenken.\\
+            Es wäre auch noch von Vorteil, als Student zu sehen, wie die einzelnen Punkte bei den Anforderungen gewichtet werden, um etwas bessere abschätzen zu können, wo man wie viel Arbeit reinstecken sollte.
+        \subsection{Erweiterungen}
+            Zur Erweiterung des Projektes wäre mein Vorschlag als optionalen Teil noch das Anlegen auf der Seite von neuen Fragen hinzuzufügen.
+    \newpage
+\end{document}

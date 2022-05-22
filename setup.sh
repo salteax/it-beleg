@@ -23,4 +23,14 @@ elif [[ $1 == "getSolutions" ]]; then
     else
         curl --user $2:$3 -X GET  https://irene.informatik.htw-dresden.de:8888/api/quizzes/completed
     fi
+elif [[ $1 == "createPDF" ]]; then 
+    if ! command -v pdflatex &> /dev/null
+    then
+        echo "pdflatex existiert nicht!"
+        exit 1
+    else
+        pdflatex -output-directory=tex ./tex/lernportfolio.tex
+        mv ./tex/lernportfolio.pdf .
+        xdg-open lernportfolio.pdf
+    fi
 fi
