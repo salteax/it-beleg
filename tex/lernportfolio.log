@@ -1,27 +1,21 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.7.13)  22 MAY 2022 02:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2021.7.13)  22 MAY 2022 04:20
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**./tex/lernportfolio.tex
-(./tex/lernportfolio.tex
+**/home/paul/it-beleg/tex/lernportfolio.tex
+(/home/paul/it-beleg/tex/lernportfolio.tex
 LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18>
-(/usr/share/texmf-dist/tex/latex/koma-script/scrartcl.cls
+L3 programming layer <2021-02-18> (/usr/share/texmf-dist/tex/latex/koma-script/scrartcl.cls
 Document Class: scrartcl 2021/03/17 v3.33 KOMA-Script document class (article)
 (/usr/share/texmf-dist/tex/latex/koma-script/scrkbase.sty
-Package: scrkbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-dependent b
-asics and keyval usage)
-
-(/usr/share/texmf-dist/tex/latex/koma-script/scrbase.sty
-Package: scrbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-independent 
-basics and keyval usage)
-
-(/usr/share/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrkbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-dependent basics and keyval usage)
+ (/usr/share/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2021/03/17 v3.33 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+ (/usr/share/texmf-dist/tex/latex/koma-script/scrlfile.sty
 Package: scrlfile 2021/03/17 v3.33 KOMA-Script package (file load hooks)
-
-(/usr/share/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+ (/usr/share/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
 Package: scrlfile-hook 2021/03/17 v3.33 KOMA-Script package (using LaTeX hooks)
-
 
 LaTeX3 Info: Defining command \BeforeFile with sig. 'm' on line 61.
 
@@ -100,19 +94,15 @@ LaTeX3 Info: Defining command \AfterReadingMainAux with sig. 'om' on line 287.
 LaTeX3 Info: Defining command \protected@immediate@write with sig. 'm+m+m' on
 (LaTeX3)     line 298.
 
-
-(/usr/share/texmf-dist/tex/latex/koma-script/scrlogo.sty
+ (/usr/share/texmf-dist/tex/latex/koma-script/scrlogo.sty
 Package: scrlogo 2021/03/17 v3.33 KOMA-Script package (logo)
-)))
-(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+))) (/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
 Skipping: [2021/05/01] Usage of raw option list on input line 252.
-Applying: [0000/00/00] compatibility for LaTeX before 2021/05/01 on input line 
-337.
-))
-(/usr/share/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Applying: [0000/00/00] compatibility for LaTeX before 2021/05/01 on input line 337.
+)) (/usr/share/texmf-dist/tex/latex/koma-script/tocbasic.sty
 Package: tocbasic 2021/03/17 v3.33 KOMA-Script package (handling toc-files)
 \scr@dte@tocline@numberwidth=\skip47
 \scr@dte@tocline@numbox=\box47
@@ -125,14 +115,10 @@ Package scrartcl Info: You've used standard option `12pt'.
 (scrartcl)             If you'd like to set the option with \KOMAoptions,
 (scrartcl)             you'd have to use `fontsize=12pt' there
 (scrartcl)             instead of `12pt', too.
-Class scrartcl Info: File `scrsize12pt.clo' used to setup font sizes on input l
-ine 2239.
-
-(/usr/share/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
-File: scrsize12pt.clo 2021/03/17 v3.33 KOMA-Script font size class option (12pt
-)
-)
-(/usr/share/texmf-dist/tex/latex/koma-script/typearea.sty
+Class scrartcl Info: File `scrsize12pt.clo' used to setup font sizes on input line 2239.
+ (/usr/share/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
+File: scrsize12pt.clo 2021/03/17 v3.33 KOMA-Script font size class option (12pt)
+) (/usr/share/texmf-dist/tex/latex/koma-script/typearea.sty
 Package: typearea 2021/03/17 v3.33 KOMA-Script package (type area)
 \ta@bcor=\skip48
 \ta@div=\count179
@@ -203,64 +189,48 @@ Class scrartcl Info: using compatibility default `afterindent=bysign'
 \c@pti@nb@sid@b@x=\box48
 Package tocbasic Info: babel extension for `lof' omitted
 (tocbasic)             because of missing \bbl@set@language on input line 6127.
-
 \scr@dte@figure@maxnumwidth=\skip61
 \c@figure=\count186
 Package tocbasic Info: babel extension for `lot' omitted
 (tocbasic)             because of missing \bbl@set@language on input line 6139.
-
 \scr@dte@table@maxnumwidth=\skip62
 \c@table=\count187
 Class scrartcl Info: Redefining `\numberline' on input line 6303.
 \bibindent=\dimen138
-)
-(/usr/share/texmf-dist/tex/latex/psnfss/helvet.sty
+) (/usr/share/texmf-dist/tex/latex/psnfss/helvet.sty
 Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
-)
-(/usr/share/texmf-dist/tex/latex/preprint/fullpage.sty
+) (/usr/share/texmf-dist/tex/latex/preprint/fullpage.sty
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip63
-)
-(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+) (/usr/share/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@prehook=\toks16
 \inpenc@posthook=\toks17
-)
-(/usr/share/texmf-dist/tex/generic/babel/babel.sty
+) (/usr/share/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2021/03/24 3.56 The Babel package
-
-(/usr/share/texmf-dist/tex/generic/babel/babel.def
+ (/usr/share/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2021/03/24 3.56 Babel common definitions
 \babel@savecnt=\count188
 \U@D=\dimen139
 \l@babelnohyphens=\language87
-
-(/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
+ (/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
 )
 \bbl@dirlevel=\count189
-
-(/usr/share/texmf-dist/tex/generic/babel-german/ngerman.ldf
-Language: ngerman 2021/02/27 v2.13 German support for babel (post-1996 orthogra
-phy)
-
-(/usr/share/texmf-dist/tex/generic/babel-german/ngermanb.ldf
-Language: ngermanb 2021/02/27 v2.13 German support for babel (post-1996 orthogr
-aphy)
+ (/usr/share/texmf-dist/tex/generic/babel-german/ngerman.ldf
+Language: ngerman 2021/02/27 v2.13 German support for babel (post-1996 orthography)
+ (/usr/share/texmf-dist/tex/generic/babel-german/ngermanb.ldf
+Language: ngermanb 2021/02/27 v2.13 German support for babel (post-1996 orthography)
 Package babel Info: Making " an active character on input line 122.
 )))
-LaTeX Font Info:    Trying to load font information for OT1+phv on input line 1
-1.
-
-(/usr/share/texmf-dist/tex/latex/psnfss/ot1phv.fd
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 11.
+ (/usr/share/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
-)
-(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count190
 \l__pdf_internal_box=\box49
-)
-(tex/lernportfolio.aux)
+) (/home/paul/it-beleg/tex/lernportfolio.aux)
 \openout1 = `lernportfolio.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -283,8 +253,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 15.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(tex/lernportfolio.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (/home/paul/it-beleg/tex/lernportfolio.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -295,42 +264,38 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
  [2] [3]
 Overfull \hbox (17.12694pt too wide) in paragraph at lines 35--36
-\OT1/phv/m/n/12 ren ha-be ich noch die CSS-Funktion calc() ken-nen-ge-lernt und
- mit ihr die Gr[]o^^Yenaufteilung
+\OT1/phv/m/n/12 ren ha-be ich noch die CSS-Funktion calc() ken-nen-ge-lernt und mit ihr die Gr[]o^^Yenaufteilung
  []
 
 [4]
 Overfull \hbox (13.02266pt too wide) in paragraph at lines 42--45
-\OT1/phv/m/n/12 folg-reich, da die Ab-fra-ge der ge-sam-ten Ant-wor-ten stets e
-inen lee-ren Ar-ray zur[]uckgeliefert
+\OT1/phv/m/n/12 folg-reich, da die Ab-fra-ge der ge-sam-ten Ant-wor-ten stets einen lee-ren Ar-ray zur[]uckgeliefert
  []
 
 [5] [6]
 
 LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
-(LaTeX3)     55.
+(LaTeX3)     57.
 
 
 LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
-(LaTeX3)     55.
+(LaTeX3)     57.
 
 
 LaTeX3 Info: Redefining command \BeforeClosingMainAux with sig. 'm' on line
-(LaTeX3)     55.
+(LaTeX3)     57.
 
- (tex/lernportfolio.aux) ) 
+ (/home/paul/it-beleg/tex/lernportfolio.aux) ) 
 Here is how much of TeX's memory you used:
- 4212 strings out of 478994
- 89533 string characters out of 5864751
+ 4211 strings out of 478994
+ 89743 string characters out of 5864751
  517993 words of memory out of 5000000
  21695 multiletter control sequences out of 15000+600000
  417132 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 111i,6n,116p,10633b,339s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</
-usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist
-/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on tex/lernportfolio.pdf (6 pages, 30603 bytes).
+ 111i,6n,116p,10651b,339s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on /home/paul/it-beleg/tex/lernportfolio.pdf (6 pages, 30756 bytes).
 PDF statistics:
  32 PDF objects out of 1000 (max. 8388607)
  21 compressed objects within 1 object stream
