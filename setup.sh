@@ -31,6 +31,6 @@ elif [[ $1 == "createPDF" ]]; then
     else
         pdflatex -output-directory=tex ./tex/lernportfolio.tex
         mv ./tex/lernportfolio.pdf .
-        xdg-open lernportfolio.pdf
+        xdg-open lernportfolio.pdf &
     fi
 fi
