@@ -1,7 +1,6 @@
 "use strict"; // Strikter Modus
 
-/* global variables */
-//var json = require('../data/questions.json');
+/* Globale Variablen */
 let mathQuestions = []; 
 let itQuestions = [];
 let generalQuestions = [];
@@ -10,15 +9,17 @@ let isMath = false;
 let expanded = false;
 let stats;
 let activeQuestions;
-let questionPath = '../data/questions.json'
+let questionPath = '../data/questions.json';
 let i = 0;
 
+// Konstruktor für REST Array
 function restObject(question, answers) {
     this.a = question;
     this.l = answers;
 }
 
 window.addEventListener("load", function() {
+    // JSON Fragen laden
     fetchJSONFile(false, questionPath, function(data){
         for(i = 0; i < data.mathematik.length; i++) {
             mathQuestions.push(data.mathematik.at(i));
@@ -31,14 +32,15 @@ window.addEventListener("load", function() {
         }
     });
 
-    fetchJSONFile(true, "https://irene.informatik.htw-dresden.de:8888/api/quizzes", function(data){
+    // REST Fragen laden
+    fetchREST(true, "https://irene.informatik.htw-dresden.de:8888/api/quizzes", function(data){
         for(i = 0; i < data.content.length; i++) {
             restQuestions.push(new restObject(data.content.at(i).text, data.content.at(i).options));
         }
     });
 
     // Lösungen, funktioniert aber nicht
-    /*fetchJSONFile(true, "https://irene.informatik.htw-dresden.de:8888/api/quizzes/completed", function(data){
+    /*fetchREST(true, "https://irene.informatik.htw-dresden.de:8888/api/quizzes/1/solve", function(data){
         console.log(data.content);
     });*/
 
@@ -112,20 +114,43 @@ function fetchJSONFile(isRest, path, callback) {
     };
     
     httpRequest.open('GET', path, true);
-    // nur notwendig wenn Rest-Schnittstelle angegangen werden soll
-    if(isRest) {
-        let mail = "s81801@informatik.htw-dresden.de";
-        let pw = "81801";
-        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(mail + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
-    }
     httpRequest.send();
+}
+
+function fetchREST(isGET, path, callback) {
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState === 4) {
+            if (httpRequest.status === 200) {
+                var data = JSON.parse(httpRequest.responseText);
+                if (callback) callback(data);
+            }
+        }
+    };
+
+    let mail = "s81801@informatik.htw-dresden.de";
+    let pw = "81801";
+
+    if(isGET) {
+        httpRequest.open('GET', path, true);
+        httpRequest.setRequestHeader("Content-Type", "application/json");
+        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(mail + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
+        httpRequest.send();
+    } else {
+        httpRequest.open('POST', path, true);
+        httpRequest.setRequestHeader("Content-Type", "application/json");
+        httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*"); 
+        httpRequest.setRequestHeader("Access-Control-Allow-Headers", "*");
+        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(mail + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
+        httpRequest.send('[1, 2]');
+    }
 }
 
 // !TODO FEHLER MANCHMAL KOMMT BEI MATHE EINE Aufgabe doppelt und die andere garnicht
 function newQuestion() {
     if(!(stats.total == stats.answered)) {
         // Zufällige Frage bestimmen
-        let questionNumber = Math.floor(Math.random()*activeQuestions.length);
+        let questionNumber = Math.floor(Math.random()*(activeQuestions.length-1));
         // Frage in Dokument schreiben
         if(isMath) {
             katex.render(activeQuestions[questionNumber].a, document.getElementById("question"), {
@@ -154,7 +179,7 @@ function newQuestion() {
             }
         }
         // Frage aus Array entfernen
-        activeQuestions.splice(activeQuestions[questionNumber], 1);
+        activeQuestions.splice(activeQuestions.indexOf(activeQuestions[questionNumber]), 1);
     } else {
         // Statistiken
         document.getElementById("task").style.display = 'none';

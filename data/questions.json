@@ -1,13 +1,16 @@
 {
     "mathematik" : [
         {"a":"x^2+x^2", "l":["2x^2","x^4","x^8","2x^4"]},
-        {"a":"x^2*x^2", "l":["x^4","x^2","2x^2","4x"]}
+        {"a":"x^2*x^2", "l":["x^4","x^2","2x^2","4x"]},
+        {"a":"2*4+4", "l":["12","16","8","4"]},
+        {"a":"x^0", "l":["1","0","NaN","x"]}
     ],
     "internettechnologien" : [
         {"a":"Welche Authentifizierung bietet HTTP", "l":["Digest Access Authentication","OTP","OAuth","2-Faktor-Authentifizierung"]},
         {"a":"Welches Transportprotokoll eignet sich für zeitkritische Übertragungen", "l":["UDP","TCP","HTTP","Fast Retransmit"]}
     ],
     "allgemein" : [
-        {"a":"Karl der Große, Geburtsjahr", "l":["747","828","650","1150"]}
+        {"a":"Karl der Große, Geburtsjahr", "l":["747","828","650","1150"]},
+        {"a":"Mauer Fall Deutschland", "l":["1989","1945","2001","1974"]}
     ]
 }
