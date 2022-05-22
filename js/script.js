@@ -1,21 +1,23 @@
 "use strict"; // Strikter Modus
 
 /* Globale Variablen */
+let questionPath = '../data/questions.json';
 let mathQuestions = []; 
 let itQuestions = [];
 let generalQuestions = [];
 let restQuestions = [];
+let activeQuestions;
 let isMath = false;
 let expanded = false;
 let stats;
-let activeQuestions;
-let questionPath = '../data/questions.json';
 let i = 0;
 
 // Konstruktor für REST Array
-function restObject(question, answers) {
-    this.a = question;
-    this.l = answers;
+class restObject {
+    constructor(question, answers) {
+        this.a = question;
+        this.l = answers;
+    }
 }
 
 window.addEventListener("load", function() {
@@ -39,8 +41,15 @@ window.addEventListener("load", function() {
         }
     });
 
-    // Lösungen, funktioniert aber nicht
-    /*fetchREST(true, "https://irene.informatik.htw-dresden.de:8888/api/quizzes/1/solve", function(data){
+    // REST Lösungen, funktioniert aber nicht (CORS Errors)
+    /*  (Ungefähres) Vorgehen wenn ich es zum funktionieren bekommen würde:
+            Bool Variable ob REST Fragen oder nicht
+            dann bei Antwort Button Click -> gucken ob REST Frage 
+            -> wenn REST Frage, dann POST Request mit send('antwort') // wahrscheinlich noch globale Variable anlegen wo aktuelle Frage ID drin steht da Frage entfernt wird aus Array nach schreiben
+            -> dann entsprechende Auswertung
+        Andere Möglichkeit wäre einfach in der REST Schnittstelle immer die Antwort als 1. Frage festzulegen aber ich denke nicht, dass das so gemacht werden sollte.
+    */
+    /*fetchREST(false, "https://irene.informatik.htw-dresden.de:8888/api/quizzes/1/solve", function(data){
         console.log(data.content);
     });*/
 
@@ -53,7 +62,7 @@ window.addEventListener("load", function() {
             document.getElementById("stats").style.display ='none';
             document.getElementById("right").style.width = "50%";
             document.getElementById("wrong").style.width = "50%";
-
+            // Array wo aktive Fragen drin stehen befüllen
             switch(e.target.value) {
                 case "Mathematik":
                     isMath = true;
@@ -112,7 +121,6 @@ function fetchJSONFile(isRest, path, callback) {
             }
         }
     };
-    
     httpRequest.open('GET', path, true);
     httpRequest.send();
 }
@@ -128,25 +136,24 @@ function fetchREST(isGET, path, callback) {
         }
     };
 
-    let mail = "s81801@informatik.htw-dresden.de";
+    let email = "s81801@informatik.htw-dresden.de";
     let pw = "81801";
 
     if(isGET) {
         httpRequest.open('GET', path, true);
         httpRequest.setRequestHeader("Content-Type", "application/json");
-        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(mail + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
+        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
         httpRequest.send();
     } else {
         httpRequest.open('POST', path, true);
         httpRequest.setRequestHeader("Content-Type", "application/json");
         httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*"); 
         httpRequest.setRequestHeader("Access-Control-Allow-Headers", "*");
-        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(mail + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
+        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
         httpRequest.send('[1, 2]');
     }
 }
 
-// !TODO FEHLER MANCHMAL KOMMT BEI MATHE EINE Aufgabe doppelt und die andere garnicht
 function newQuestion() {
     if(!(stats.total == stats.answered)) {
         // Zufällige Frage bestimmen
@@ -181,10 +188,9 @@ function newQuestion() {
         // Frage aus Array entfernen
         activeQuestions.splice(activeQuestions.indexOf(activeQuestions[questionNumber]), 1);
     } else {
-        // Statistiken
+        // Statistik anzeigen
         document.getElementById("task").style.display = 'none';
         document.getElementById("stats").style.display ='flex';
-
         document.getElementById("right-questions").innerHTML = stats.right;
         document.getElementById("wrong-questions").innerHTML = stats.wrong;
         document.getElementById("total-questions").innerHTML = stats.total;

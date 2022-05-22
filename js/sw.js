@@ -1,4 +1,4 @@
-// Übernommen aus Beispiel
+// Übernommen aus dem Beispiel
 self.addEventListener('install', event => event.waitUntil(
     caches.open('pwa1').then(cache => cache.add('/'))
 ));

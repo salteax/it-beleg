@@ -43,6 +43,7 @@ main {
     flex-direction: row;
     width: 25px;
     z-index: 1;
+    /*transition: all 1s; */
 }
 
 #arrow-button {
@@ -170,6 +171,7 @@ main {
     transition-timing-function: linear;
 }
 
+/* Statistik */
 #stats {
     display: none;
     flex-direction: column;
@@ -221,7 +223,7 @@ footer p {
     }
 
     #content {
-        width:100%;
+        width: 100%;
         height: 80%;
     }
 
