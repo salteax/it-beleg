@@ -1,20 +1,25 @@
 "use strict"; // Strikter Modus
 
 /* Globale Variablen */
-let questionPath = '../data/questions.json';
+let questionPath = "../data/questions.json";
+let url = "https://irene.informatik.htw-dresden.de:8888/api/quizzes/";
 let mathQuestions = []; 
 let itQuestions = [];
 let generalQuestions = [];
 let restQuestions = [];
 let activeQuestions;
+let questionNumber;
+let selectedID;
 let isMath = false;
+let isRest = false;
 let expanded = false;
 let stats;
 let i = 0;
 
 // Konstruktor für REST Array
 class restObject {
-    constructor(question, answers) {
+    constructor(id, question, answers) {
+        this.id = id;
         this.a = question;
         this.l = answers;
     }
@@ -35,28 +40,17 @@ window.addEventListener("load", function() {
     });
 
     // REST Fragen laden
-    fetchREST(true, "https://irene.informatik.htw-dresden.de:8888/api/quizzes", function(data){
+    fetchREST(true, url, null, function(data){
         for(i = 0; i < data.content.length; i++) {
-            restQuestions.push(new restObject(data.content.at(i).text, data.content.at(i).options));
+            restQuestions.push(new restObject(data.content.at(i).id, data.content.at(i).text, data.content.at(i).options));
         }
     });
-
-    // REST Lösungen, funktioniert aber nicht (CORS Errors)
-    /*  (Ungefähres) Vorgehen wenn ich es zum funktionieren bekommen würde:
-            Bool Variable ob REST Fragen oder nicht
-            dann bei Antwort Button Click -> gucken ob REST Frage 
-            -> wenn REST Frage, dann POST Request mit send('antwort') // wahrscheinlich noch globale Variable anlegen wo aktuelle Frage ID drin steht da Frage entfernt wird aus Array nach schreiben
-            -> dann entsprechende Auswertung
-        Andere Möglichkeit wäre einfach in der REST Schnittstelle immer die Antwort als 1. Frage festzulegen aber ich denke nicht, dass das so gemacht werden sollte.
-    */
-    /*fetchREST(false, "https://irene.informatik.htw-dresden.de:8888/api/quizzes/1/solve", function(data){
-        console.log(data.content);
-    });*/
 
     const topicButtons = document.getElementsByClassName("thema");
     for(const topic of topicButtons) {
         topic.onclick = function(e) {
             isMath = false;
+            isRest = false;
             stats = {total:0,answered:0,right:0, wrong:0};
             document.getElementById("task").style.display = 'flex';
             document.getElementById("stats").style.display ='none';
@@ -75,6 +69,7 @@ window.addEventListener("load", function() {
                     activeQuestions = [...generalQuestions];
                 break;
                 case "Rest":
+                    isRest = true;
                     activeQuestions = [...restQuestions];
                 break;
                 default:
@@ -91,14 +86,24 @@ window.addEventListener("load", function() {
         // Auswerten
         button.onclick = function(e) {
             stats.answered++;
-            switch(button.id) {
-                case "Richtig":
-                    stats.right++;
-                break;
-                case "Falsch":
-                    stats.wrong++;
-                break;
-                default:
+            if(isRest) {
+                fetchREST(false, (url+selectedID+"/solve"), (parseInt(button.id)+1), function(data){
+                    if (data.success) {
+                        stats.right++;
+                    } else {
+                        stats.wrong++;
+                    }
+                });
+            } else {
+                switch(button.id) {
+                    case "Richtig":
+                        stats.right++;
+                    break;
+                    case "Falsch":
+                        stats.wrong++;
+                    break;
+                    default:
+                }
             }
             // Progressbar anpassen
             document.getElementById("right").style.width = ((stats.right / stats.answered) * 100) + "%";
@@ -111,53 +116,10 @@ window.addEventListener("load", function() {
     document.getElementById("arrow-button").addEventListener("click", expand);
 });
 
-function fetchJSONFile(isRest, path, callback) {
-    var httpRequest = new XMLHttpRequest();
-    httpRequest.onreadystatechange = function() {
-        if (httpRequest.readyState === 4) {
-            if (httpRequest.status === 200) {
-                var data = JSON.parse(httpRequest.responseText);
-                if (callback) callback(data);
-            }
-        }
-    };
-    httpRequest.open('GET', path, true);
-    httpRequest.send();
-}
-
-function fetchREST(isGET, path, callback) {
-    var httpRequest = new XMLHttpRequest();
-    httpRequest.onreadystatechange = function() {
-        if (httpRequest.readyState === 4) {
-            if (httpRequest.status === 200) {
-                var data = JSON.parse(httpRequest.responseText);
-                if (callback) callback(data);
-            }
-        }
-    };
-
-    let email = "s81801@informatik.htw-dresden.de";
-    let pw = "81801";
-
-    if(isGET) {
-        httpRequest.open('GET', path, true);
-        httpRequest.setRequestHeader("Content-Type", "application/json");
-        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
-        httpRequest.send();
-    } else {
-        httpRequest.open('POST', path, true);
-        httpRequest.setRequestHeader("Content-Type", "application/json");
-        httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*"); 
-        httpRequest.setRequestHeader("Access-Control-Allow-Headers", "*");
-        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
-        httpRequest.send('[1, 2]');
-    }
-}
-
 function newQuestion() {
     if(!(stats.total == stats.answered)) {
         // Zufällige Frage bestimmen
-        let questionNumber = Math.floor(Math.random()*(activeQuestions.length-1));
+        questionNumber = Math.floor(Math.random()*(activeQuestions.length-1));
         // Frage in Dokument schreiben
         if(isMath) {
             katex.render(activeQuestions[questionNumber].a, document.getElementById("question"), {
@@ -169,13 +131,21 @@ function newQuestion() {
         // Random Sortierung
         let questionSort = [0, 1, 2, 3];
         questionSort.sort(function(a,b){return 0.5 - Math.random()});
+        // Für REST ID zu Frage festlegen
+        if(isRest) {
+            selectedID = activeQuestions[questionNumber].id;
+        }
         // Antworten an Buttons hängen
         let buttons = document.getElementById("answer").getElementsByTagName("button");
         for(i = 0; i < 4; i++) {
-            if(questionSort[i] == 0) {
-                buttons[i].id = "Richtig";
+            if(isRest) {
+                buttons[i].id = questionSort[i];
             } else {
-                buttons[i].id = "Falsch";
+                if(questionSort[i] == 0) {
+                    buttons[i].id = "Richtig";
+                } else {
+                    buttons[i].id = "Falsch";
+                }
             }
             if(isMath) {
                 katex.render(activeQuestions[questionNumber].l[questionSort[i]], buttons[i], {
@@ -210,5 +180,48 @@ function expand() {
         document.getElementById("topic").style.width = "0%";
         document.getElementById("arrow").innerHTML = ">";
         expanded = false;
+    }
+}
+
+function fetchJSONFile(isRest, path, callback) {
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState === 4) {
+            if (httpRequest.status === 200) {
+                var data = JSON.parse(httpRequest.responseText);
+                if (callback) callback(data);
+            }
+        }
+    };
+    httpRequest.open('GET', path, true);
+    httpRequest.send();
+}
+
+function fetchREST(isGET, path, answer, callback) {
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = function() {
+        if (httpRequest.readyState === 4) {
+            if (httpRequest.status === 200) {
+                var data = JSON.parse(httpRequest.responseText);
+                if (callback) callback(data);
+            }
+        }
+    };
+
+    let email = "s81801@informatik.htw-dresden.de";
+    let pw = "81801";
+
+    if(isGET) {
+        httpRequest.open('GET', path, true);
+        httpRequest.setRequestHeader("Content-Type", "application/json");
+        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
+        httpRequest.send();
+    } else {
+        httpRequest.open('POST', path, true);
+        httpRequest.setRequestHeader("Content-Type", "application/json");
+        httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*"); 
+        httpRequest.setRequestHeader("Access-Control-Allow-Headers", "*");
+        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
+        httpRequest.send('[' +  answer +  ']');
     }
 }
