@@ -30,8 +30,8 @@ window.addEventListener("load", function() {
             isRest = false;
             stats = {total:0,answered:0,right:0, wrong:0};
             activeQuestions = [];
-            document.getElementById("task").style.display = 'flex';
-            document.getElementById("stats").style.display ='none';
+            document.getElementById("task").style.display = "flex";
+            document.getElementById("stats").style.display = "none";
             document.getElementById("right").style.width = "50%";
             document.getElementById("wrong").style.width = "50%";
             // Array wo aktive Fragen drin stehen befüllen
@@ -60,7 +60,7 @@ window.addEventListener("load", function() {
                 break;
                 case "Rest":
                     isRest = true;
-                    fetchREST('GET', url, null, function(data){
+                    fetchREST("GET", url, null, function(data){
                         for(i = 0; i < data.content.length; i++) {
                             activeQuestions.push(new restObject(data.content.at(i).id, data.content.at(i).text, data.content.at(i).options));
                         }
@@ -81,7 +81,7 @@ window.addEventListener("load", function() {
         button.onclick = function(e) {
             stats.answered++;
             if(isRest) {
-                fetchREST('POST', (url+selectedID+"/solve"), (parseInt(button.id)+1), function(data){
+                fetchREST("POST", (url+selectedID+"/solve"), (parseInt(button.id)+1), function(data){
                     if (data.success) {
                         stats.right++;
                     } else {
@@ -152,8 +152,8 @@ function newQuestion() {
         activeQuestions.splice(activeQuestions.indexOf(activeQuestions[questionNumber]), 1);
     } else {
         // Statistik anzeigen
-        document.getElementById("task").style.display = 'none';
-        document.getElementById("stats").style.display ='flex';
+        document.getElementById("task").style.display = "none";
+        document.getElementById("stats").style.display ="flex";
         document.getElementById("right-questions").innerHTML = stats.right;
         document.getElementById("wrong-questions").innerHTML = stats.wrong;
         document.getElementById("total-questions").innerHTML = stats.total;
@@ -186,7 +186,7 @@ function fetchJSONFile(isRest, path, callback) {
             }
         }
     };
-    httpRequest.open('GET', path, false);
+    httpRequest.open("GET", path, false);
     httpRequest.send();
 }
 
@@ -209,7 +209,7 @@ function fetchREST(requestType, path, answer, callback) {
     httpRequest.setRequestHeader("Content-Type", "application/json");
     httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts 
 
-    if(requestType === 'POST') {
+    if(requestType === "POST") {
         httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*"); 
         httpRequest.setRequestHeader("Access-Control-Allow-Headers", "*");
         answerSend = '[' +  answer +  ']';
