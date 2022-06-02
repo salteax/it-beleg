@@ -3,11 +3,7 @@
 /* Globale Variablen */
 let questionPath = "../data/questions.json";
 let url = "https://irene.informatik.htw-dresden.de:8888/api/quizzes/";
-let mathQuestions = []; 
-let itQuestions = [];
-let generalQuestions = [];
-let restQuestions = [];
-let activeQuestions;
+let activeQuestions = [];
 let questionNumber;
 let selectedID;
 let isMath = false;
@@ -26,32 +22,14 @@ class restObject {
 }
 
 window.addEventListener("load", function() {
-    // JSON Fragen laden
-    fetchJSONFile(false, questionPath, function(data){
-        for(i = 0; i < data.mathematik.length; i++) {
-            mathQuestions.push(data.mathematik.at(i));
-        }
-        for(i = 0; i < data.internettechnologien.length; i++) {
-            itQuestions.push(data.internettechnologien.at(i));
-        }
-        for(i = 0; i < data.allgemein.length; i++) {
-            generalQuestions.push(data.allgemein.at(i));
-        }
-    });
-
-    // REST Fragen laden
-    fetchREST(true, url, null, function(data){
-        for(i = 0; i < data.content.length; i++) {
-            restQuestions.push(new restObject(data.content.at(i).id, data.content.at(i).text, data.content.at(i).options));
-        }
-    });
-
     const topicButtons = document.getElementsByClassName("thema");
     for(const topic of topicButtons) {
         topic.onclick = function(e) {
+            // Sachen zurücksetzen auf Standart
             isMath = false;
             isRest = false;
             stats = {total:0,answered:0,right:0, wrong:0};
+            activeQuestions = [];
             document.getElementById("task").style.display = 'flex';
             document.getElementById("stats").style.display ='none';
             document.getElementById("right").style.width = "50%";
@@ -60,17 +38,33 @@ window.addEventListener("load", function() {
             switch(e.target.value) {
                 case "Mathematik":
                     isMath = true;
-                    activeQuestions = [...mathQuestions];
+                    fetchJSONFile(false, questionPath, function(data){
+                        for(i = 0; i < data.mathematik.length; i++) {
+                            activeQuestions.push(data.mathematik.at(i));
+                        }
+                    });
                 break;
                 case "Internettechnologien":
-                    activeQuestions = [...itQuestions];
+                    fetchJSONFile(false, questionPath, function(data){
+                        for(i = 0; i < data.internettechnologien.length; i++) {
+                            activeQuestions.push(data.internettechnologien.at(i));
+                        }
+                    });
                 break;
                 case "Allgemein":
-                    activeQuestions = [...generalQuestions];
+                    fetchJSONFile(false, questionPath, function(data){
+                        for(i = 0; i < data.allgemein.length; i++) {
+                            activeQuestions.push(data.allgemein.at(i));
+                        }
+                    });
                 break;
                 case "Rest":
                     isRest = true;
-                    activeQuestions = [...restQuestions];
+                    fetchREST('GET', url, null, function(data){
+                        for(i = 0; i < data.content.length; i++) {
+                            activeQuestions.push(new restObject(data.content.at(i).id, data.content.at(i).text, data.content.at(i).options));
+                        }
+                    });
                 break;
                 default:
             }
@@ -87,7 +81,7 @@ window.addEventListener("load", function() {
         button.onclick = function(e) {
             stats.answered++;
             if(isRest) {
-                fetchREST(false, (url+selectedID+"/solve"), (parseInt(button.id)+1), function(data){
+                fetchREST('POST', (url+selectedID+"/solve"), (parseInt(button.id)+1), function(data){
                     if (data.success) {
                         stats.right++;
                     } else {
@@ -112,7 +106,6 @@ window.addEventListener("load", function() {
             newQuestion();
         }
     }
-
     document.getElementById("arrow-button").addEventListener("click", expand);
 });
 
@@ -193,11 +186,11 @@ function fetchJSONFile(isRest, path, callback) {
             }
         }
     };
-    httpRequest.open('GET', path, true);
+    httpRequest.open('GET', path, false);
     httpRequest.send();
 }
 
-function fetchREST(isGET, path, answer, callback) {
+function fetchREST(requestType, path, answer, callback) {
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function() {
         if (httpRequest.readyState === 4) {
@@ -210,18 +203,17 @@ function fetchREST(isGET, path, answer, callback) {
 
     let email = "s81801@informatik.htw-dresden.de";
     let pw = "81801";
+    let answerSend = "";
 
-    if(isGET) {
-        httpRequest.open('GET', path, true);
-        httpRequest.setRequestHeader("Content-Type", "application/json");
-        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
-        httpRequest.send();
-    } else {
-        httpRequest.open('POST', path, true);
-        httpRequest.setRequestHeader("Content-Type", "application/json");
+    httpRequest.open(requestType, path, false);
+    httpRequest.setRequestHeader("Content-Type", "application/json");
+    httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts 
+
+    if(requestType === 'POST') {
         httpRequest.setRequestHeader("Access-Control-Allow-Origin", "*"); 
         httpRequest.setRequestHeader("Access-Control-Allow-Headers", "*");
-        httpRequest.setRequestHeader("Authorization", "Basic " + window.btoa(email + ":" + pw)); // Prof. Vogts Lösung aus dem Rocket Chat
-        httpRequest.send('[' +  answer +  ']');
+        answerSend = '[' +  answer +  ']';
     }
+
+    httpRequest.send(answerSend);
 }
