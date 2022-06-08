@@ -24,7 +24,7 @@ header {
     color: #ebdbb2;
     font-weight: 900;
     font-size: 40pt;
-    height: 10%;
+    height: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +32,7 @@ header {
 
 /* Main */
 main {
-    height: calc(90% - 20px);
+    height: calc(80% - 20px);
     display: flex;
     flex-direction: row;
 }
