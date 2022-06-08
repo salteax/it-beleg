@@ -2,6 +2,7 @@
 
 /* Globale Variablen */
 let questionPath = "../data/questions.json";
+//let questionPath = "./data/questions.json"; WEBSERVER
 let url = "https://irene.informatik.htw-dresden.de:8888/api/quizzes/";
 let activeQuestions = [];
 let questionNumber;
